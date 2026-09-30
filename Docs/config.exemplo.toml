@@ -1,0 +1,37 @@
+# Exemplo de ~/.config/agy-agent/config.toml
+#
+# Tudo é opcional: sem arquivo, cada modo usa seus padrões.
+# Precedência: flag de linha de comando > este arquivo > padrão do modo.
+#
+# Só há suporte a um subconjunto plano de TOML: pares `chave = valor` e
+# tabelas `[mode.<modo>]`, com string, inteiro e booleano. Array, número
+# decimal, string multilinha e tabela aninhada são recusados com o número da
+# linha, em vez de ignorados em silêncio.
+
+# Caminho explícito do agy. Sem isso a busca é AGY_BIN, depois PATH,
+# depois ~/.local/bin/agy. A função de shell agy() nunca é usada.
+# agy_path = "/Users/você/.local/bin/agy"
+
+# Valores aplicados a todos os modos, salvo sobrescrita por modo.
+# model = "gemini-3.8-flash-medium"
+# timeout_seconds = 240
+# response_budget = 2000
+# max_cache_age_seconds = 86_400
+
+[mode.research]
+# model = "gemini-3.1-pro-high"
+# response_budget = 3000
+
+[mode.inspect]
+# sandbox bloqueia rede e acesso a arquivos fora do workspace.
+# Não impede escrita dentro dele; a auditoria posterior apenas detecta.
+# sandbox = true
+
+[mode.verify]
+# Respostas curtas: veredito mais a evidência mínima.
+# response_budget = 1200
+
+[mode.summarize]
+# max_cache_age_seconds é ignorado: o modo não depende da web e só é
+# invalidado por mudança do digest da pergunta, do prompt ou do anexo.
+# model = "gemini-3.8-flash-low"
