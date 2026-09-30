@@ -10,15 +10,13 @@ permissions:
 
 jobs:
   test:
-    runs-on: macos-15
+    runs-on: xcode-27
     timeout-minutes: 20
     steps:
       - name: Check out source
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-      - name: Install Swift 6.4
-        uses: swift-actions/setup-swift@7ca6abe6b3b0e8b5421b88be48feee39cbf52c6a # v2.4.0
-        with:
-          swift-version: "6.4"
+      - name: Show toolchain
+        run: swift --version
       - name: Test
         run: swift test
       - name: Build release with warnings as errors
